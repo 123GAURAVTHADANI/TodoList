@@ -19,14 +19,24 @@ function App() {
   const handleInput = (event) => {
     setInputState(event.target.value);
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setTodo((prevState) => ({
       ...prevState,
-      [selectedValue]: [...prevState[selectedValue], inputState],
+      [selectedValue]: [
+        ...prevState[selectedValue],
+        {
+          name: inputState,
+          priority: "HIGH",
+          createdAt: new Date().getFullYear(),
+          description: "Lorem Ipsum!!",
+        },
+      ],
     }));
   };
-  // console.log(">>", todo);
+  console.log(">>", todo);
+
   return (
     <>
       <div>
@@ -34,15 +44,14 @@ function App() {
           <input type="text" placeholder="Input Todo" onChange={handleInput} />
           <button type="submit">Submit</button>
         </form>
-        <h4>Status:{selectedValue}</h4>
         <select onChange={handleChange}>
           <option value={"inprogress"}>In-Progress</option>
           <option value={"pending"}>Pending</option>
           <option value={"completed"}>Completed</option>
         </select>
       </div>
-
-      <Status todo={todo} />
+      {/* 
+      <Status todo={todo} /> */}
     </>
   );
 }
