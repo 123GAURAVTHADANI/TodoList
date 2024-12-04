@@ -3,12 +3,12 @@ import InProgress from "../Inprogress/Inprogress";
 import Pending from "../Pending/Pending";
 
 function Status(props) {
-  let { todo, selectedValue } = props;
+  let { todo } = props;
   return (
     <div id="status">
-      <InProgress todo={todo} />
-      <Pending todo={todo} />
-      <Completed todo={todo} />
+      <InProgress todoInprogress={todo.inprogress} />
+      <Pending todoPending={todo.pending} />
+      <Completed todoCompleted={todo.completed} />
     </div>
   );
 }
