@@ -7,6 +7,9 @@ function Pending() {
   return (
     <div className="card">
       <h3>Pending!!</h3>
+      {todo.pending.map((item) => {
+        return <h3>{item.name}</h3>;
+      })}
     </div>
   );
 }

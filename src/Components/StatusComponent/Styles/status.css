@@ -1,0 +1,9 @@
+#status {
+  background-color: white;
+  border: 1px solid gray;
+  width: 100%;
+  display: grid;
+  gap: 10px;
+  color: white;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}

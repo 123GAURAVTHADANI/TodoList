@@ -1,13 +1,14 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import "./App.css";
 import Status from "./Components/StatusComponent/Status";
 
 // step 1
-export const TodoData = createContext("");
+export const TodoData = createContext(null);
 
 function App() {
   // two states to manage the input field and select dropdown
   const [inputState, setInputState] = useState("");
+  const [theme, setTheme] = useState("dark");
 
   const [todo, setTodo] = useState({
     inprogress: [],
@@ -38,7 +39,21 @@ function App() {
       ],
     }));
   };
-  const [theme, setTheme] = useState("dark");
+
+  // theme
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const handleToggle = () => {
+    let theme = localStorage.getItem("theme");
+    if (theme == "dark") {
+      setTheme("light");
+    } else if (theme == "light") {
+      setTheme("dark");
+    }
+  };
+
   return (
     <TodoData.Provider value={{ todo, theme }}>
       <div>
@@ -52,6 +67,7 @@ function App() {
           <option value={"completed"}>Completed</option>
         </select>
       </div>
+      <button onClick={handleToggle}>Theme Toggle!!</button>
       <Status />
     </TodoData.Provider>
   );
