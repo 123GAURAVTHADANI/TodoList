@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { createContext, useState } from "react";
 import "./App.css";
 import Status from "./Components/StatusComponent/Status";
+
+// step 1
+export const TodoData = createContext("");
 
 function App() {
   // two states to manage the input field and select dropdown
@@ -35,12 +38,11 @@ function App() {
       ],
     }));
   };
-  console.log(">>", todo);
-
+  const [theme, setTheme] = useState("dark");
   return (
-    <>
+    <TodoData.Provider value={{ todo, theme }}>
       <div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} style={{ color: "white" }}>
           <input type="text" placeholder="Input Todo" onChange={handleInput} />
           <button type="submit">Submit</button>
         </form>
@@ -50,9 +52,8 @@ function App() {
           <option value={"completed"}>Completed</option>
         </select>
       </div>
-      {/* 
-      <Status todo={todo} /> */}
-    </>
+      <Status />
+    </TodoData.Provider>
   );
 }
 

@@ -2,13 +2,12 @@ import Completed from "../Completed/Completed";
 import InProgress from "../Inprogress/Inprogress";
 import Pending from "../Pending/Pending";
 
-function Status(props) {
-  let { todo } = props;
+function Status() {
+  // const { todo } = useContext(TodoData);
   return (
     <div id="status">
-      <InProgress todoInprogress={todo.inprogress} />
-      <Pending todoPending={todo.pending} />
-      <Completed todoCompleted={todo.completed} />
+      <InProgress />
+      <Pending />
     </div>
   );
 }
